@@ -1,0 +1,122 @@
+:root {
+    --green: #538d4e;
+    --yellow: #b59f3b;
+    --gray: #3a3a3c;
+    --dark: #121213;
+    --light: #ffffff;
+    --tone: #818384;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--dark);
+    color: var(--light);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    touch-action: manipulation; /* Giúp bấm trên mobile nhạy hơn */
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+header {
+    margin: 10px 0 20px 0;
+    text-align: center;
+}
+
+h1 { margin: 5px 0; font-size: 1.5rem; }
+.badge { font-size: 0.8rem; background: var(--tone); padding: 2px 6px; border-radius: 4px; }
+
+.controls button {
+    background: var(--tone); border: none; color: white; padding: 5px 10px; 
+    border-radius: 4px; cursor: pointer; margin: 0 2px;
+}
+.controls .hint-btn { background: #b59f3b; color: black; font-weight: bold; }
+
+/* --- BÀN CỜ --- */
+#game-board {
+    display: grid;
+    grid-gap: 5px;
+    margin-bottom: 20px;
+    /* Số cột sẽ được JS set lại tùy độ dài từ */
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--gray);
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    transition: transform 0.1s;
+}
+
+/* --- HIỆU ỨNG --- */
+.pulse { transform: scale(1.1); border-color: var(--tone); }
+
+.flip {
+    animation: flip 0.6s ease forwards;
+}
+
+@keyframes flip {
+    0% { transform: rotateX(0); background: transparent; border-color: var(--gray); }
+    50% { transform: rotateX(90deg); background: transparent; border-color: var(--gray); }
+    51% { background: var(--color); border-color: var(--color); }
+    100% { transform: rotateX(0); background: var(--color); border-color: var(--color); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* --- BÀN PHÍM ẢO --- */
+#keyboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 0 5px;
+}
+
+.kb-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.key {
+    background-color: var(--tone);
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    height: 58px;
+    flex: 1; /* Tự co giãn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.key-big {
+    flex: 1.5;
+    font-size: 0.9rem;
+}
